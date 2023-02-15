@@ -1,0 +1,30 @@
+{
+	"name": "linkfyapi",
+	"version": "1.0.0",
+	"main": "./build/src/index.js",
+	"scripts": {
+		"dev": "npx nodemon ./src/index.ts dev",
+		"build": "tsc --build",
+		"start": "node ./build/index.js",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
+	},
+	"keywords": [],
+	"author": "Open-Source tool to shorten your links quickly. (API)",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"@bluzzi/eslint-config": "^0.8.6",
+		"@prisma/client": "^4.10.1",
+		"eslint": "^8.34.0",
+		"prisma": "^4.10.1",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.9.4"
+	},
+	"dependencies": {
+		"@types/node": "^18.13.0",
+		"colors": "^1.4.0",
+		"fastify": "^4.13.0",
+		"zod": "^3.20.6"
+	}
+}
