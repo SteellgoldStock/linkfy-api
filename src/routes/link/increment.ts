@@ -6,7 +6,11 @@ import prisma from "../../utils/prisma";
 
 app.get("/link/:slug", {
   handler: async(request: FastifyRequest<{ Params: Link }>, reply: FastifyReply) => {
-    warn(`GET [${request.ip}] incrementing link with slug /${request.params.slug}.`);
+    reply.status(200).send({
+      message: "Correctly routed received request."
+    });
+
+    warn(`[GET] incrementing link with slug /${request.params.slug}.`);
 
     const link = await prisma.link.findUnique({
       where: {
@@ -19,7 +23,7 @@ app.get("/link/:slug", {
         error: "Link not found"
       });
 
-      error(`404 [${request.ip}] Link with slug /${request.params.slug} not found.`);
+      error(`[404] Link with slug /${request.params.slug} not found.`);
       return;
     }
 
@@ -32,7 +36,7 @@ app.get("/link/:slug", {
       }
     });
 
-    success(`200 [${request.ip}] Link with slug /${request.params.slug} incremented by 1.`);
+    success(`[200] Link with slug /${request.params.slug} incremented by 1.`);
     return reply.status(200).send({
       message: "Link incremented successfully."
     });
