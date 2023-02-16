@@ -2,17 +2,14 @@ import { fastify } from "fastify";
 
 export const app = fastify();
 
-async function server(): Promise<void> {
-  import("./routes/link/increment");
+async function server() : Promise<void> {
+  import("./routes/link/get/single");
+  import("./routes/link/get/multiple");
 
-  try {
-    await app.listen({ port: 3000, host: "0.0.0.0" }).then(() => {
-      console.log("Server listening on 0.0.0.0:3000");
-    });
-  } catch (err) {
-    app.log.error(err);
-    process.exit(1);
-  }
+  app.listen({ port: 3000, host: "localhost" }, err => {
+    if (err) throw err;
+    console.log("Server listening at http://localhost:3000");
+  });
 }
 
 server();
