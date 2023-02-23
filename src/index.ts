@@ -5,6 +5,7 @@ export const app = fastify();
 async function server() : Promise<void> {
   import("./routes/link/get/single");
   import("./routes/link/get/multiple");
+  import("./routes/link/put/increment");
 
   app.listen({ port: 3000, host: "0.0.0.0" }, err => {
     if (err) throw err;
