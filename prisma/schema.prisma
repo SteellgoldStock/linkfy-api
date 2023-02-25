@@ -7,8 +7,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String  @id @default(cuid())
+  email     String  @unique
+  isPremium Boolean @default(false)
+  role      String  @default("user")
+}
+
 model Link {
-  id        String   @id
+  id        String   @id @default(cuid())
   url       String
   slug      String   @unique
   clicks    Int      @default(0)
@@ -16,11 +23,5 @@ model Link {
   userId    String?
   visitorId String
   status    Boolean  @default(true)
-}
-
-model User {
-  id        String  @id
-  email     String  @unique
-  isPremium Boolean @default(false)
-  role      String  @default("user")
+  password  String   @default("none")
 }
