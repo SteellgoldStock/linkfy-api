@@ -1,8 +1,14 @@
 import { fastify } from "fastify";
+import cors from "@fastify/cors";
 
 export const app = fastify();
 
 async function server() : Promise<void> {
+  await app.register(cors, {
+    origin: "*" // TODO: Change this to a whitelist of domains
+    // THIS IS NOT SECURE: ONLY USE FOR DEVELOPMENT
+  });
+
   import("./routes/link/create/single");
   import("./routes/link/get/single");
   import("./routes/link/get/multiple");
